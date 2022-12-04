@@ -1,0 +1,18 @@
+Package: qacPlot
+Title: Takes in variables, determines what class they are, and create
+Version: 0.0.0.9000
+Authors@R: c(
+    person(given="Calvin", family="Gao", email="cgao@wesleyan.edu", role = c("aut")),
+    person(given="Terry", family="Yuan", email="yuan@wesleyan.edu", role = c("aut", "cre"))
+    )
+Description: This package will take in three variables with the third variable as the grouping variable. The package will then determine whether they are a categorical or numerical variable and make appropriate plots.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.2
+Imports: 
+    ggplot2
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr

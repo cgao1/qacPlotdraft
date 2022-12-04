@@ -1,0 +1,53 @@
+---
+title: "Introduction to thePlot"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Introduction to thePlot}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(qacPlot)
+```
+
+
+```{r}
+# examples
+# library(ggplot2)
+# ggplot(data=ChickWeight)+
+#   geom_point(aes(x=Diet, y=Time))
+#
+#
+# ggplot(data=ChickWeight)+
+#   geom_point(aes(x=weight, y=Time))+
+#   geom_smooth(aes(x=weight, y=Time), method="lm")+
+#   facet_grid(. ~ Diet)
+#
+#
+# ggplot(data=ChickWeight)+
+#   geom_area(aes(x=Time, y=Diet, fill=factor(weight,)),stat="identity",alpha=0.5)+
+#   facet_grid(.~Diet, labeller = label_both)+
+#   ylab("Predicted Cumulative Probability")+ #what should this be
+#   xlab("Wife's Age")
+#
+#
+#
+# ggplot(data=mtcars,
+#        aes(x=mpg, col=cyl))+
+#   geom_density()
+#
+# ggplot(data=mtcars,
+#        aes(x=mpg, col=cyl))+
+#   geom_density()+
+#   facet_grid(.~gear)
+
+```
+
