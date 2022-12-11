@@ -21,12 +21,9 @@
 #' thePlot(mtcars, hp)
 #' }
 thePlot<- function(data,x,y=NULL,group=NULL){
-  # needs to be dataframe
-  # needs at least x
   # all three variables need to be in the dataset
   # find function that skips test
-  # what to do with complex variables, is there types of classes and what should di with them
-  # with Q, hitogram or density
+  # with Q, histogram or density
   #make sure they do not put the same variable
   x_sub<-substitute(x)
   x_quote<-as.character(x)
@@ -39,7 +36,7 @@ thePlot<- function(data,x,y=NULL,group=NULL){
   }
 
 
-  classQ<-c("numeric", "integer") # double check with user
+  classQ<-c("numeric", "integer")
   classC<-c("character","logical","factor")
   colplot<-colnames(data)
 
@@ -224,14 +221,7 @@ thePlot<- function(data,x,y=NULL,group=NULL){
     }
 
   }
-
-
-
-
-
 p
-
-
 }
 
 
