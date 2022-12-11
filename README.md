@@ -23,6 +23,17 @@ This is a basic example which shows you how to solve a common problem:
 
 ``` r
 library(qacPlot)
-## basic example code
+library(ggplot2)
+library(visreg)
+thePlot(mtcars,mpg) #Q
+thePlot(mtcars,cyl) #C
+thePlot(mtcars,cyl,am) #CC color
+thePlot(mtcars,am,mpg)#CQ color density
+thePlot(mtcars,mpg,cyl) #logistic
+thePlot(mtcars,mpg,wt)#QQ
+thePlot(mtcars,vs,am,cyl)#CCC color
+thePlot(mtcars,am,mpg,vs)#CQC color density
+thePlot(mtcars,mpg,am,vs)#log
+thePlot(mtcars,mpg,wt,am)#QQC
 ```
 
