@@ -21,16 +21,22 @@
 #' thePlot(mtcars, hp)
 #' }
 thePlot<- function(data,x,y=NULL,group=NULL){
-  # all three variables need to be in the dataset
   # find function that skips test
   # with Q, histogram or density
-  #make sure they do not put the same variable
+
   x_sub<-substitute(x)
   x_quote<-as.character(x)
   y_sub<-substitute(y)
   y_quote<-as.character(y)
   group_sub<-substitute(group)
   group_quote<-as.character(group)
+
+  inputs<-c(x,y,group)
+  check_duplicate<-duplicated(inputs)
+  if(any(check_duplicate==TRUE)){
+    return(cat("There are duplicated variables provided. Please check your inputted variables"))
+  }
+
   if(!is.data.frame(data)){
     return(cat("This is not a proper dataframe"))
   }
@@ -152,10 +158,14 @@ thePlot<- function(data,x,y=NULL,group=NULL){
         theme_minimal()
     }
     if(xclass=="Q" & yclass=="C"){
+      return(cat("We recommend you to determine what type of categorical response variable you have.
+                 If you have a binary categorical response, a logistic regression is a good model.
+                 If you have a ordinal categorical variable, an ordinal logisitic regression is appropriate.
+                 If you have a nominal categorical variable, a multinomial logistic regression is a good fit"))
       data_result<-glm(data[[y_sub]]~data[[x]],
                        family="binomial",
                        data=data)
-      p<-visreg::visreg(data_result, "data[[x]]",
+      p<-visreg::visreg(data_result, x,
                 gg=TRUE,
                 scale="response")+
         labs(y=paste("Prob(",y_quote,")"),

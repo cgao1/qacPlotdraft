@@ -18,6 +18,7 @@ knitr::opts_chunk$set(
 library(qacPlot)
 ```
 
+We recommend to factor integer variables before inputting the variables into the function
 
 ```{r}
 # examples

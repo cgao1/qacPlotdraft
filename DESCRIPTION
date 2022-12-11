@@ -1,9 +1,9 @@
 Package: qacPlot
-Title: Takes in variables, determines what class they are, and create
+Title: Takes in variables, determines what class they are, and create a simple plot
 Version: 0.0.0.9000
 Authors@R: c(
-    person(given="Calvin", family="Gao", email="cgao@wesleyan.edu", role = c("aut")),
-    person(given="Terry", family="Yuan", email="yuan@wesleyan.edu", role = c("aut", "cre"))
+    person(given="Calvin", family="Gao", email="cgao@wesleyan.edu", role = c("aut","cre")),
+    person(given="Terry", family="Yuan", email="yuan@wesleyan.edu", role = c("aut"))
     )
 Description: This package will take in three variables with the third variable as the grouping variable. The package will then determine whether they are a categorical or numerical variable and make appropriate plots.
 License: MIT + file LICENSE
