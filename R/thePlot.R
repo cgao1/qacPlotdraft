@@ -125,13 +125,10 @@ thePlot<- function(data,x,y=NULL,group=NULL){
              aes(x=data[[x]],
                fill = data[[y_sub]])) +
         geom_bar(position = "dodge")  +
-        labs(#change [fill in]
-          x = x_quote,
-          y = y_quote,
-          fill = y_quote,
-          title = paste("Bar Chart of", x_quote,
-                        ""),
-          subtitle= "Grouped Bar Chart") +
+        labs(x = x_quote,
+             fill = y_quote,
+             title = paste(x_quote, "by", y_quote),
+             subtitle= "Bar Chart") +
         theme_minimal()
     }
     if(xclass=="C" & yclass=="Q"){
@@ -139,12 +136,12 @@ thePlot<- function(data,x,y=NULL,group=NULL){
             aes(x = data[[y_sub]],
                 fill = data[[x]])) +
         geom_density(alpha = 0.4) +
-        labs(#change fill in
-          title= paste(y_quote, "by" ,x_quote),
-          subtitle = "Grouped Kernel Density Plot",
-          x=y_quote,
-          y="Density",
-          fill= x_quote)
+        labs(title= paste(y_quote, "by" ,x_quote),
+             subtitle = "Kernel Density Plot",
+             x=y_quote,
+             y="Density",
+             fill= x_quote)+
+        theme_minimal()
     }
 
     if(xclass=="Q" & yclass=="Q"){
@@ -152,17 +149,13 @@ thePlot<- function(data,x,y=NULL,group=NULL){
         geom_point()+
         labs(x=x_quote,
              y=y_quote,
-             title=paste(x_quote, "and", y_quote,"Scatterplot"),
+             title=paste(x_quote, "by", y_quote),
              subtitle="Scatterplot with Line of Best Fit")+
         geom_smooth(method="lm")+
         theme_minimal()
     }
     if(xclass=="Q" & yclass=="C"){
-      return(cat("We recommend you to determine what type of categorical response variable you have.
-                 If you have a binary categorical response, a logistic regression is a good model.
-                 If you have a ordinal categorical variable, an ordinal logisitic regression is appropriate.
-                 If you have a nominal categorical variable, a multinomial logistic regression is a good fit"))
-      data_result<-glm(data[[y_sub]]~data[[x]],
+      data_result<-glm(data[[y]]~data[[x]],
                        family="binomial",
                        data=data)
       p<-visreg::visreg(data_result, x,
@@ -183,13 +176,11 @@ thePlot<- function(data,x,y=NULL,group=NULL){
              aes(x=data[[x]],
                fill = data[[y]])) +
         geom_bar(position = "dodge")  +
-        facet_wrap(~data[[group]])+
-        labs(#change [fill in]
-          x = x_quote,
-          title = paste(x_quote,"on",y_quote,"by", group_quote),
-          subtitle = "Grouped Bar Charts with a Grouping Variable",
-          fill=y_quote) +
-        theme_minimal()
+        facet_wrap(~data[[group]], ncol = 1)+
+        labs(x = x_quote,
+             title = paste(x_quote,"on",y_quote,"by", group_quote),
+             subtitle = "Grouped Bar Charts",
+             fill=y_quote)
     }
     if(xclass=="C" & yclass=="Q" & groupclass=="C"){
       p<-ggplot(data=data,
@@ -197,19 +188,17 @@ thePlot<- function(data,x,y=NULL,group=NULL){
                  fill = data[[x]])) +
         geom_density(alpha = 0.4) +
         facet_wrap(~data[[group]]) +
-        labs(#change fill in
-          x=y_quote,
-          y="Density",
-          title = paste(x_quote,"with",y_quote,"by",group_quote),
-          subtitle = "Grouped Kernel Density Plot with a Grouping Variable",
-          fill=x_quote)+
-        theme_minimal()
+        labs(x=y_quote,
+             y="Density",
+             title = paste(x_quote,"with",y_quote,"by",group_quote),
+             subtitle = "Grouped Kernel Density Plot",
+             fill=x_quote)
     }
     if(xclass=="Q" & yclass=="C" & groupclass=="C"){
       data_result<-glm(data[[y_sub]]~data[[x]],
                        family="binomial",
                        data=data)
-      p<-visreg::visreg(data_result, "data[[x]]",
+      p<-visreg::visreg(data_result, x,
                 gg=TRUE,
                 scale="response")+
         labs(y=paste("Prob(",y_quote,")"),
@@ -222,12 +211,11 @@ thePlot<- function(data,x,y=NULL,group=NULL){
       p<-ggplot(data=data,aes(x=data[[x]], y=data[[y]]))+
         geom_point()+
         geom_smooth(method="lm")+
-        facet_grid(. ~ data[[group]])+
+        facet_wrap(. ~ data[[group]])+
         labs(x=x_quote,
              y=y_quote,
-             title="Scatterplot",
-             subtitle="Scatterplot with Line of Best Fit by a Grouping Variable")
-        theme_minimal()
+             title=paste(x_quote,"on", y_quote,"by",group_quote),
+             subtitle="Grouped Scatterplot with Line of Best Fit")
     }
 
   }
