@@ -4,16 +4,16 @@
 \name{qacPlot-package}
 \alias{qacPlot}
 \alias{qacPlot-package}
-\title{qacPlot: Takes in variables, determines what class they are, and create}
+\title{qacPlot: Takes in variables, determines what class they are, and create a simple plot}
 \description{
 This package will take in three variables with the third variable as the grouping variable. The package will then determine whether they are a categorical or numerical variable and make appropriate plots.
 }
 \author{
-\strong{Maintainer}: Terry Yuan \email{yuan@wesleyan.edu}
+\strong{Maintainer}: Calvin Gao \email{cgao@wesleyan.edu}
 
 Authors:
 \itemize{
-  \item Calvin Gao \email{cgao@wesleyan.edu}
+  \item Terry Yuan \email{yuan@wesleyan.edu}
 }
 
 }

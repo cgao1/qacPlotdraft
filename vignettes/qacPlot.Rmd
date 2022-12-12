@@ -6,7 +6,6 @@ vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
-
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
@@ -18,37 +17,60 @@ knitr::opts_chunk$set(
 library(qacPlot)
 ```
 
-We recommend to factor integer variables before inputting the variables into the function
+The purpose of the **qacPlot** package is to help users quickly identify suitable plot types and visualize variables they are interested in. The only function `thePlot` can handle univariate, bivariate and multivariate graphs of a dataset based on variable types (categorical or quantitative). 
 
-```{r}
-# examples
-# library(ggplot2)
-# ggplot(data=ChickWeight)+
-#   geom_point(aes(x=Diet, y=Time))
-#
-#
-# ggplot(data=ChickWeight)+
-#   geom_point(aes(x=weight, y=Time))+
-#   geom_smooth(aes(x=weight, y=Time), method="lm")+
-#   facet_grid(. ~ Diet)
-#
-#
-# ggplot(data=ChickWeight)+
-#   geom_area(aes(x=Time, y=Diet, fill=factor(weight,)),stat="identity",alpha=0.5)+
-#   facet_grid(.~Diet, labeller = label_both)+
-#   ylab("Predicted Cumulative Probability")+ #what should this be
-#   xlab("Wife's Age")
-#
-#
-#
-# ggplot(data=mtcars,
-#        aes(x=mpg, col=cyl))+
-#   geom_density()
-#
-# ggplot(data=mtcars,
-#        aes(x=mpg, col=cyl))+
-#   geom_density()+
-#   facet_grid(.~gear)
 
+## Example Dataset 
+Let’s use our favorite one **mtcars** as an example. 
+```{r message = FALSE, warning = FALSE}
+data(mtcars)
 ```
+
+### Data Management 
+Since `thePlot` rely on the type of variables (categorical or quantitative) for selecting plots, you will need to manage the variables you are using `thePlot` for before using the function. 
+
+Typically, you should pay attention to numeric variables that are supposed to be **categorical** in the dataset. For example, the **cyl** variable in **mtcars** should be a categorical variable, but its class is numeric. 
+
+You can copy the following codes to manage the variables in mtcars:
+
+```{r, message = FALSE, warning = FALSE}
+mtcars$cyl <- as.factor(mtcars$cyl)
+mtcars$vs <- as.factor(mtcars$vs)
+mtcars$am <- as.factor(mtcars$am)
+mtcars$gear <- as.factor(mtcars$gear)
+```
+
+## Let's Plot!
+Now we can start plotting with `thePlot`. Let's take a look at univariate, bivariate, and multivariate graphs one by one.
+
+#### Univariate 
+When you only want to visualize one variable, you need to specify the data frame and the variable. 
+**thePlot(mydata, Variable1)**
+
+```{r, message = FALSE, warning = FALSE}
+thePlot(mtcars, am)
+thePlot(mtcars, mpg)
+```
+
+#### Bivariate
+If you are interested in the relationship between two variables, you can follow this syntax:
+**thePlot(mydata, ExplanatoryVariable, ResponseVariable)**
+
+```{r, message = FALSE, warning = FALSE}
+thePlot(mtcars, cyl, mpg)
+```
+
+#### Multivariate
+`thePlot` can handle up to 3 variables. You can visualize the relationship between an explanatory variable and a response variable grouped by a third variable. 
+Notes: the third variable must be a categorical variable. 
+
+**thePlot(mydata, ExplanatoryVariable, ResponseVariable, )**
+
+```{r, message= FALSE, warning=FALSE}
+thePlot(mtcars, am, mpg, vs)
+```
+
+## List of cases 
+There are 10 scenarios in total. You can find the corresponding plot type of each scenario in the following table. 
+
 
