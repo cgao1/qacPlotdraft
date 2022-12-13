@@ -1,8 +1,8 @@
 ---
-title: "Introduction to thePlot"
+title: "Plotting with thePlot"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Introduction to thePlot}
+  %\VignetteIndexEntry{Plotting with thePlot}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

@@ -33,19 +33,5 @@ thePlot(mtcars, cyl, mpg)
 
 For more detailed instructions, please visit [**thePlot**](https://rkabacoff.github.io/qacPlot)
 
-``` r
-library(qacPlot)
-library(ggplot2)
-library(visreg)
-thePlot(mtcars,mpg) #Q
-thePlot(mtcars,cyl) #C
-thePlot(mtcars,cyl,am) #CC color
-thePlot(mtcars,am,mpg)#CQ color density
-thePlot(mtcars,mpg,cyl) #logistic
-thePlot(mtcars,mpg,wt)#QQ
-thePlot(mtcars,vs,am,cyl)#CCC color
-thePlot(mtcars,am,mpg,vs)#CQC color density
-thePlot(mtcars,mpg,am,vs)#log
-thePlot(mtcars,mpg,wt,am)#QQC
-```
+
 
